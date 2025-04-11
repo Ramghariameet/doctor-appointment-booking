@@ -3,12 +3,171 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equip="X-UA-Compatible" content="IE=edge"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <link rel="stylesheet" href="{% static 'patient\dashboard.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/> 
+    <title>Admin panel</title>
 </head>
 <body>
-    aslkdfjsakljf
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-clinic-medical"></i>
+                        <div class="title">Brand name</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-th-large"></i>
+                        <div class="title">Dashboard</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-stethoscope"></i>
+                        <div class="title">Appointments</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-user-md"></i>
+                        <div class="title">Doctors</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-puzzle-piece"></i>
+                        <div class="title">Departments</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-cog"></i>
+                        <div class="title">Settings</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-question"></i>
+                        <div class="title">Help</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="top-bar">
+                <div class="search">
+                    <input type="text" name="search" placeholder="search here">
+                    <label for="search"><i class="fas fa-search"></i></label>
+                </div>
+                <i class="fas fa-bell"></i>
+                <div class="user">
+                    <img src="https://img.freepik.com/free-photo/smiling-doctor-with-strethoscope-isolated-grey_651396-974.jpg?uid=R187124700&ga=GA1.1.1760214304.1739288877&semt=ais_hybrid">
+                </div>
+            </div>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number">74</div>
+                        <div class="card-name">Appointments</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-briefcase-medical"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number">110</div>
+                        <div class="card-name">New Patients</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-wheelchair"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number">12</div>
+                        <div class="card-name">Operations</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number">$4500</div>
+                        <div class="card-name">Earnings</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="tables">
+                <div class="last-appointments">
+                    <div class="heading">
+                        <h2>Last Appointments</h2>
+                        <a href="#" class="btn">View All</a>
+                    </div>
+                    <table class="appointments">
+                        <thead>
+                            <td>Patient_name</td>
+                            <td>doctor_name</td>
+                            <td>Reason</td>
+                            <td>Actions</td>
+                        </thead>
+                        <tbody>
+                        {% for appointment in appointments %}
+                            <tr>
+                                <td>{{appointment.patient_name}}</td>
+                                <td>{{appointment.doctor_name}}</td>
+                                <td>{{appointment.reason}}</td>
+                                <td>
+                                    <i class="far fa-eye"></i>
+                                    <i class="far fa-edit"></i>
+                                    <i class="far fa-trash-alt"></i>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <div class="doctor-visiting">
+                    <div class="heading">
+                        <h2>Doctor Visiting</h2>
+                        <a href="#" class="btn">View All</a>
+                    </div>
+                    <table class="visiting">
+                        <thead>
+                            <td>Photo</td>
+                            <td>Name</td>
+                            
+                        </thead>
+                        <tbody>
+                            {% for doctor in doctors %}
+
+                            <tr>
+                                <td>
+                                    <div class="img-box-small">
+                                        <img src="{% static 'patient/namevisit1.png' %}">
+                                    </div>
+                                </td>
+                                <td>{{ doctor.name}}</td>
+                                
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     
     <script src="{% static 'patient\dashboard.js' %}"></script>
     <script src=""></script>

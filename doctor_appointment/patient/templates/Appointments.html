@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'patient\Appointments.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <header class="header">
+
+        <a href="#" class="logo"> <i class="fas fa-heartbeat"></i> MEDICare </a>
+
+        <nav class="navbar">
+            <a href="#home">home</a>
+            <a href="#services">services</a>
+            <a href="#about">about</a>
+            <a href="#doctors">doctors</a>
+            <a href="#booking">booking</a>
+            <a href="#reviews">reviews</a>
+            <a href="#blogs">blogs</a>
+            <a href="register">register</a>
+            <a href="dashboard">dashboard</a>
+            <a href="dashboardpatient">dashboardpatient</a>
+        </nav>
+
+        <div id="menu-btn" class="fas fa-bars"></div>
+
+    </header>
+     <section class="home" id="home">
+
+        
+    
+        <div class="content">
+            <h1>All Appointments</h1>
+            
+        </div>
+    
+    </section>
+
+
+    {% for appointment in appointments %}
+    <section class="home" id="home">
+            <div class="content">
+                <h1>Appointment Details</h1>
+                <p>Doctor's Name: {{ appointment.doctor_name }}</p>
+                <p>Date of Appointment: {{ appointment.date }}</p>
+                <p>Reason of visit: {{ appointment.reason }}</p>
+                <p>Patient's name: {{ appointment.patient_name }}</p>
+                <p>Patient's Age: {{ appointment.patient_age }}</p>
+                <p>Patient's Gender: {{ appointment.patient_gender }}</p>
+                <p>Patient's Email: {{ appointment.patient_email }}</p>
+                <p>Patient's Phone Number: {{ appointment.patient_phone }}</p>
+                <p>For enqury contact us at: +91 2342342342</p>
+                <a href="#" class="btn"> Cancel Appointment <span class="fas fa-chevron-right"></span></a>
+            </div>
+        </section>
+        
+        {% endfor %}
+        
+    
+    
+
+
+    
+
+    <script src="{% static 'patient\Appointments.js' %}"></script>
+</body>
+</html>
