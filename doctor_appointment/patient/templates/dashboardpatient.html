@@ -47,7 +47,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="Appointments">
                         <span class="icon icon-2"><i class="ri-calendar-2-line"></i></span>
                         <span class="sidebar--item">Schedule</span>
                     </a>
@@ -93,7 +93,7 @@
             </ul>
         </div>
         <div class="main--content">
-        <div class="overview">
+        {% comment %} <div class="overview">
             <div class="title">
                 <h2 class="section--title">Overview</h2>
                 <select name="date" id="date" class="dropdown">
@@ -162,7 +162,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> {% endcomment %}
         <div class="doctors">
             <div class="title">
                 <h2 class="section--title">Doctors</h2>
@@ -192,7 +192,7 @@
         </div>
         <div class="recent--patients">
             <div class="title">
-                <h2 class="section--title">Recent Patients</h2>
+                <h2 class="section--title">Applications of {{name}}</h2>
                 <button class="add"><i class="ri-add-line"></i>Add Doctor</button>
             </div>
             <div class="table">

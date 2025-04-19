@@ -17,7 +17,8 @@ def registerPage(request):
 
 def dashboard(request):
     context = {
-        "doctors" : [] , "appointments" : []
+        "doctors" : [] , "appointments" : [], 
+        "name": request.user.username
     }
 
     all_doctors = Doctor.objects.all()
@@ -26,7 +27,7 @@ def dashboard(request):
             "name" : doctor.userId.username,
         }
         context["doctors"].append(temp)
-    all_appointments = Appointment.objects.all()
+    all_appointments = Appointment.objects.filter(docId__userId_id = request.user.id)
     for appointment in all_appointments:
         temp = {
             # "doctor_name" : f"{appointment.docId.userId.first_name} {appointment.docId.userId.last_name}"
@@ -45,7 +46,8 @@ def dashboard(request):
 def dashboardpatient(request):
     currentUser = request.user
     context = {
-        "doctors": []
+        "doctors": [],
+        "name": request.user.username
     }
 
     doctors = Doctor.objects.all()
@@ -81,7 +83,11 @@ def Appointmentdetail(request):
     return render(request, 'Appointmentdetail.html')
 
 def Appointments(request):
-    all_appointments = Appointment.objects.all()
+    Doctors = Doctor.objects.filter(userId = request.user.id)
+    if len(Doctors)> 0:
+        all_appointments = Appointment.objects.filter(docId=Doctors[0])
+    else:
+        all_appointments = Appointment.objects.filter(userId = request.user.id)
     context = {
         "appointments" : []
     }
@@ -138,7 +144,12 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return JsonResponse({'success': True})
+            Doctors = Doctor.objects.filter(userId = request.user.id)
+            if len(Doctors)> 0:
+                return JsonResponse({'success': True, 'redirect': '/dashboard'})
+            else:
+                return JsonResponse({'success': True, 'redirect': '/dashboardpatient'})
+            
         else:
             return JsonResponse({'success': False, 'message': 'Invalid credentials.'})
 
